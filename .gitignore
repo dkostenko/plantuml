@@ -1,3 +1,4 @@
+.DS_Store
 .tmp
 Makefile
 ui/node_modules
