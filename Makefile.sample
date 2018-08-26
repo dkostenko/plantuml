@@ -1,0 +1,23 @@
+default:
+	go run ./cmd/plantuml/*.go \
+	--api-addr=127.0.0.1:8082 \
+	--plantuml-server-addr=http://192.168.99.100:8081
+
+full:
+	make build-ui
+	make bin
+	make
+
+build-ui:
+	cd ./ui && ng build && cd ..
+
+plantuml:
+	docker run -d -p 8081:8080 plantuml/plantuml-server:jetty
+
+bin:
+	go-bindata-assetfs \
+	-debug \
+	--pkg=api \
+	-o=./api/bindata.go \
+	--prefix=ui/dist/ui \
+	ui/dist/ui
