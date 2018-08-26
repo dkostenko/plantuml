@@ -46,6 +46,9 @@ export class AppComponent {
   // Rendering error (when rendering state is 3).
   renderingError:IRenderingError = null;
 
+  // Flag informs whether there is a diagram descriptions in localstorage.
+  hasAutoSavedDescription: boolean = false;
+
   ngAfterViewInit() {
     // Bind diagram rendering on keyboard shortcut.
     this.editor.getEditor().commands.addCommand({
@@ -63,11 +66,20 @@ export class AppComponent {
     private sanitizer: DomSanitizer,
     private http: HttpClient,
     private cd: ChangeDetectorRef
-  ) { }
+  ) {
+    let description: string = window.localStorage.getItem('autosave');
+    if (description !== undefined && description !== null && description.length > 0) {
+      this.hasAutoSavedDescription = true;
+    }
+  }
 
   // renderDiagram renders a diagram in SVG format from the diagram description, created
   // with the help of editor.
   renderDiagram() {
+    // Save the diagram description to the localstorage.
+    // TODO create localStorage service.
+    window.localStorage.setItem('autosave', this.text);
+
     this.renderingState = 2;
     let data: any = {
       data: this.text,
@@ -99,6 +111,12 @@ export class AppComponent {
           }
         }
       );
+  }
+
+  // restoreDiagramDescription puts a diagram description from localstorage to the editor.
+  restoreDiagramDescription() {
+    this.text = window.localStorage.getItem('autosave');
+    this.renderDiagram();
   }
 
   // convertServerErroToClientError returns a client error object, based on the server error.

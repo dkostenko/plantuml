@@ -11,7 +11,10 @@
   </ace-editor>
 </div>
 <div class="right-col">
-  <div *ngIf="renderingState === 0">TODO create instructions</div>
+  <div *ngIf="renderingState === 0">
+    <p>TODO create instructions</p>
+    <p *ngIf="hasAutoSavedDescription">You have an autosaved diagram description. <button class="btn btn-sm btn-success" (click)="restoreDiagramDescription()">Restore</button></p>
+  </div>
   <div *ngIf="renderingState === 1" class="svg" [innerHTML]="svg"></div>
   <div [hidden]="renderingState !== 2">Rendering...</div>
   <div *ngIf="renderingState === 3">
