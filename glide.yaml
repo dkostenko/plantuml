@@ -1,0 +1,6 @@
+package: github.com/dkostenko/plantuml-client
+import:
+- package: github.com/jawher/mow.cli
+  version: ~1.0.4
+- package: github.com/gorilla/mux
+  version: ~1.6.2

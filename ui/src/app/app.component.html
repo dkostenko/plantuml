@@ -1,0 +1,27 @@
+<div class="left-col">
+  <ace-editor
+    #editor
+    [(text)]="text"
+    [readOnly]="false"
+    [autoUpdateContent]="true"
+    [options]="options"
+    [durationBeforeCallback]=1000
+    (textChanged)="renderDiagram()"
+    style="height: 100%; width:100%; overflow: auto;">
+  </ace-editor>
+</div>
+<div class="right-col">
+  <div *ngIf="renderingState === 0">TODO create instructions</div>
+  <div *ngIf="renderingState === 1" class="svg" [innerHTML]="svg"></div>
+  <div [hidden]="renderingState !== 2">Rendering...</div>
+  <div *ngIf="renderingState === 3">
+    <p *ngIf="renderingError !== null && renderingError.code === 1">Server is unavailable.</p>
+    <p *ngIf="renderingError !== null && renderingError.code === 2">Transport error.</p>
+    <p *ngIf="renderingError !== null && renderingError.code === 100">Unknown server error.</p>
+    <p *ngIf="renderingError !== null && renderingError.code === 101">Internal server error.</p>
+    <p *ngIf="renderingError !== null && renderingError.code === 102">Invalid params were sent to the server.</p>
+    <p *ngIf="renderingError !== null && renderingError.code === 103">Syntax error. {{renderingError.rawError}}</p>
+    <p *ngIf="renderingError !== null && renderingError.code === 104">Unknown output error.</p>
+  </div>
+</div>
+<div class="bottom-panel">TODO create configs</div>

@@ -1,0 +1,28 @@
+.left-col {
+    position: fixed;
+    top: 0;
+    bottom: 26px;
+    left: 0;
+    right: 50%;
+    overflow: hidden;
+}
+.right-col {
+    position: fixed;
+    top: 0;
+    bottom: 26px;
+    left: 50%;
+    right: 0;
+    overflow: scroll;
+    padding: 15px;
+}
+.bottom-panel {
+    padding: 0 20px;
+    background: rgb(19, 124, 201);
+    position: fixed;
+    height: 26px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    color: #fff;
+}

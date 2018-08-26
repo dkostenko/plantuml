@@ -1,0 +1,16 @@
+hash: 30d365db2f1356e1aa09407e4fb1e198d7658e57556509dd169d5ebe91eb9503
+updated: 2018-08-24T14:21:39.107881+03:00
+imports:
+- name: github.com/gorilla/mux
+  version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
+- name: github.com/jawher/mow.cli
+  version: 2f22195f169da29d54624afd9eb83ada5c9e4ee9
+  subpackages:
+  - internal/container
+  - internal/flow
+  - internal/fsm
+  - internal/lexer
+  - internal/matcher
+  - internal/parser
+  - internal/values
+testImports: []
